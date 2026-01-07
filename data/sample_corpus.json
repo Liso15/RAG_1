@@ -1,0 +1,22 @@
+[
+  {
+    "id": "proc_001",
+    "content": "Server restart procedure: Step 1 - Check system load using 'top' command. If CPU usage exceeds 90%, wait for processes to complete. Step 2 - Notify team via Slack #ops channel. Step 3 - Execute 'sudo systemctl restart apache2'. Step 4 - Monitor logs for 5 minutes using 'tail -f /var/log/apache2/error.log'. Step 5 - Verify service status with 'systemctl status apache2'. Expected downtime: 30-60 seconds. Critical: Never restart during peak hours (9AM-5PM EST)."
+  },
+  {
+    "id": "proc_002", 
+    "content": "Emergency shutdown protocol: When critical alerts fire, immediately assess severity. For P0 incidents, execute emergency shutdown within 2 minutes. Command sequence: 'sudo systemctl stop all-services && sudo shutdown -h +1'. Always backup current state first using automated scripts in /opt/backup/. Contact on-call engineer immediately. Document incident in PagerDuty with full timeline. Recovery time typically 15-30 minutes depending on data integrity checks."
+  },
+  {
+    "id": "proc_003",
+    "content": "Database maintenance schedule: Weekly maintenance occurs every Sunday 2AM-4AM EST. Automated backup runs at 1:30AM. Index optimization starts at 2:15AM. Statistics update at 3:00AM. Vacuum operations at 3:30AM. All operations logged to /var/log/db-maintenance.log. If maintenance fails, automatic rollback triggers. Manual intervention required only if rollback fails. Contact DBA team for assistance."
+  },
+  {
+    "id": "proc_004",
+    "content": "Load balancer configuration: Primary LB handles 80% traffic, secondary handles 20%. Health checks every 30 seconds on /health endpoint. Failover threshold: 3 consecutive failures. Automatic failback after 5 successful checks. SSL termination at LB level. Sticky sessions enabled for user authentication. Rate limiting: 1000 req/min per IP. Geographic routing: US-East for Americas, EU-West for Europe, Asia-Pacific for APAC regions."
+  },
+  {
+    "id": "proc_005",
+    "content": "Security incident response: Immediate containment within 15 minutes of detection. Isolate affected systems using network segmentation. Preserve evidence using forensic imaging tools. Notify security team and legal department. Document all actions in incident tracker. Coordinate with external security firm if needed. Communication plan: Internal stakeholders first, then customers if data breach confirmed. Recovery phase includes vulnerability patching and security audit."
+  }
+]
