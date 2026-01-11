@@ -1,0 +1,29 @@
+EXAMPLE 2: Budget Overflow - Long Goal Truncation
+==================================================
+
+Command:
+python3.11 main.py --query "database" --goal "[1600+ character goal text]" --verbose
+
+Budget Usage:
+┌─────────────┬──────┬───────┬───────────┬─────────┐
+│ Section     │ Used │ Limit │ Remaining │ Usage % │
+├─────────────┼──────┼───────┼───────────┼─────────┤
+│ Instructions│  39  │  255  │    216    │  15.3%  │
+│ Goal        │ 1412 │ 1500  │     88    │  94.1%  │ ← Near limit!
+│ Memory      │  23  │   55  │     32    │  41.8%  │
+│ Retrieval   │ 533  │  550  │     17    │  96.9%  │
+│ Tool_Outputs│ 147  │  855  │    708    │  17.2%  │
+└─────────────┴──────┴───────┴───────────┴─────────┘
+
+TRUNCATION BEHAVIOR:
+Input: 1600+ characters
+Output: 1412 characters (within 1500 limit)
+Method: Clean truncation without breaking words
+Result: No ellipsis needed (under limit after natural truncation)
+
+KEY OBSERVATIONS:
+- Goal stayed under 1500 char limit (94.1% usage)
+- System truncated excess content cleanly
+- No mid-word breaks
+- Retrieval adapted to "database" query (96.9% usage)
+- Both high-usage sections demonstrate budget enforcement

@@ -1,0 +1,29 @@
+EXAMPLE 1: Normal Operation - Server Restart Query
+===================================================
+
+Command:
+python3.11 main.py --query "How do I restart the server safely?" --verbose
+
+Budget Usage:
+┌─────────────┬──────┬───────┬───────────┬─────────┐
+│ Section     │ Used │ Limit │ Remaining │ Usage % │
+├─────────────┼──────┼───────┼───────────┼─────────┤
+│ Instructions│  39  │  255  │    216    │  15.3%  │
+│ Goal        │  62  │ 1500  │   1438    │   4.1%  │
+│ Memory      │  23  │   55  │     32    │  41.8%  │
+│ Retrieval   │ 547  │  550  │      3    │  99.5%  │ ← Near capacity!
+│ Tool_Outputs│ 147  │  855  │    708    │  17.2%  │
+└─────────────┴──────┴───────┴───────────┴─────────┘
+
+Final Context Window (879 chars total):
+INSTRUCTIONS: You are a helpful operations assistant.
+GOAL: Help the user with operational procedures and troubleshooting.
+MEMORY: user_pref:user_pref:CLI
+RETRIEVAL: Server restart procedure: Step 1 - Check system load using 'top' command...
+TOOL_OUTPUTS: search_logs: Found 3 ERROR entries in last 24h | check_status: Service running...
+
+KEY OBSERVATIONS:
+- Retrieval at 99.5% capacity (547/550 chars)
+- Most relevant chunks selected about server restart
+- Sentence boundaries preserved
+- Multiple document chunks merged within budget

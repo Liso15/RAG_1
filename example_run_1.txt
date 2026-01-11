@@ -1,0 +1,64 @@
+Initializing Context-Aware RAG System...
+Loaded 5 documents into vector store
+
+Budget Usage Analysis:
+                Context Budget Usage                 
++---------------------------------------------------+
+| Section      | Used | Limit | Remaining | Usage % |
+|--------------+------+-------+-----------+---------|
+| Instructions | 39   | 255   | 216       | 15.3%   |
+| Goal         | 62   | 1500  | 1438      | 4.1%    |
+| Memory       | 23   | 55    | 32        | 41.8%   |
+| Retrieval    | 547  | 550   | 3         | 99.5%   |
+| Tool_Outputs | 147  | 855   | 708       | 17.2%   |
++---------------------------------------------------+
+
+Context Sections:
++------------------------ Instructions (39/255 chars) ------------------------+
+| You are a helpful operations assistant.                                     |
++-----------------------------------------------------------------------------+
++--------------------------- Goal (62/1500 chars) ----------------------------+
+| Help the user with operational procedures and troubleshooting.              |
++-----------------------------------------------------------------------------+
++--------------------------- Memory (23/55 chars) ----------------------------+
+| user_pref:user_pref:CLI                                                     |
++-----------------------------------------------------------------------------+
++------------------------- Retrieval (547/550 chars) -------------------------+
+| Server restart procedure: Step 1 - Check system load using 'top' command.   |
+| If CPU usage exceeds 90%, wait for processes to complete. Step 2 - Notify   |
+| team via Slack #ops channel. Step 3 - Execute 'sudo systemctl restart       |
+| apache2'. Step 4 - Monitor logs for 5 minutes using 'tail -f                |
+| /var/log/apache2/error.log'. Step 5 - Verify service status with 'systemctl |
+| status apache2'. Expected downtime: 30-60 seconds. Critical: Never restart  |
+| during peak hours (9AM-5PM EST). Emergency shutdown protocol: When critical |
+| alerts fire, immediately assess severity.                                   |
++-----------------------------------------------------------------------------+
++----------------------- Tool Outputs (147/855 chars) ------------------------+
+| search_logs: Found 3 ERROR entries in last 24h | check_status: Service      |
+| running, CPU 45%, Memory 67% | get_config: timeout=30s, retry=3,            |
+| debug=false                                                                 |
++-----------------------------------------------------------------------------+
+
+Final Context Window:
++--------------------------- Agent Context Window ----------------------------+
+| INSTRUCTIONS: You are a helpful operations assistant.                       |
+|                                                                             |
+| GOAL: Help the user with operational procedures and troubleshooting.        |
+|                                                                             |
+| MEMORY: user_pref:user_pref:CLI                                             |
+|                                                                             |
+| RETRIEVAL: Server restart procedure: Step 1 - Check system load using 'top' |
+| command. If CPU usage exceeds 90%, wait for processes to complete. Step 2 - |
+| Notify team via Slack #ops channel. Step 3 - Execute 'sudo systemctl        |
+| restart apache2'. Step 4 - Monitor logs for 5 minutes using 'tail -f        |
+| /var/log/apache2/error.log'. Step 5 - Verify service status with 'systemctl |
+| status apache2'. Expected downtime: 30-60 seconds. Critical: Never restart  |
+| during peak hours (9AM-5PM EST). Emergency shutdown protocol: When critical |
+| alerts fire, immediately assess severity.                                   |
+|                                                                             |
+| TOOL_OUTPUTS: search_logs: Found 3 ERROR entries in last 24h |              |
+| check_status: Service running, CPU 45%, Memory 67% | get_config:            |
+| timeout=30s, retry=3, debug=false                                           |
++-----------------------------------------------------------------------------+
+
+Total Context Size: 879 characters
